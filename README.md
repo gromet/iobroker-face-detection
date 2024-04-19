@@ -1,7 +1,8 @@
 # iobroker-face-detection
 iobroker Script für Face Detection/Recognition mit tensorflow für INTEL ATOM CPUs
 
-1. Erstelle die Datenbank. Dort werdne GEsichtsmerkmale gespeichert 
+1. Erstelle die Datenbank. Dort werdne GEsichtsmerkmale gespeichert
+```
 // sql anweisungen
   `face_id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
@@ -34,6 +35,7 @@ CREATE TABLE `face_detection` (
   PRIMARY KEY (`image_id`),
   KEY `face_detection_person_id_IDX` (`person_id`,`image_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+```
 
 2. Speichere das Script- z.B.auch global um es überall zu verwenden
 3.  Models runterladen unter
@@ -41,7 +43,8 @@ CREATE TABLE `face_detection` (
     Speicherpfad in  0_userdata.0.face_detection.model_path
     
 
-4. Bekannte GEsicher anlegen
+4. Bekannte Gesichter anlegen
+```
  // Add faces
 face.addNewFacesFromFolder('<path_to_folder_with_images', 'Nachname', 'Vorname')
 .then((result) => {
@@ -51,11 +54,10 @@ face.addNewFacesFromFolder('<path_to_folder_with_images', 'Nachname', 'Vorname')
 .catch((error) => {
     log(error,'error');
 });
-
+```
 5. Gesichter erkennen
+```
 // Detect Faces
 const result = await face.detectFaces('<path_to_image.jpg>');
 console.log(result);
-
-
-*/
+```
